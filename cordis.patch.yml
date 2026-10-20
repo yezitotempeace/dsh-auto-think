@@ -1,0 +1,6 @@
+# auto-think bundle patch: one client-only plugin row.
+# 宿主半边是空 apply（只为让这一行出现在宿主 Loader 里），
+# 浏览器半边通过 package.json 的 dsh.client 声明被发现。
+- insert:
+    - id: auto-think
+      name: dsh-auto-think
