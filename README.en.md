@@ -80,10 +80,20 @@ node test/smoke.mjs
 
 ## Install
 
-- put the repo at `/root/dsh-auto-think`;
-- add `"dsh-auto-think": "link:/root/dsh-auto-think"` to the profile `dependencies`
-  and `dsh-auto-think` to `dsh.profile.bundles`;
-- link `node_modules/dsh-auto-think`, restart the Web app.
+From the public repo, install the dependency first:
+
+```bash
+dsh plugin --profile web add github:yezitotempeace/dsh-auto-think
+```
+
+Then add `dsh-auto-think` to `dsh.profile.bundles` in the profile `package.json` and
+restart the Web app. (`plugin add` only installs the dependency; bundles are not
+mounted automatically.)
+
+For local development you can link instead: put the repo at `/root/dsh-auto-think`,
+set `"dsh-auto-think": "link:/root/dsh-auto-think"` in `dependencies`, add
+`dsh-auto-think` to `dsh.profile.bundles`, link `node_modules/dsh-auto-think`, and
+restart the Web app.
 
 ## Disable / uninstall
 
