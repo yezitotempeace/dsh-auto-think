@@ -67,9 +67,18 @@ node test/smoke.mjs
 
 ## 安装
 
-- 仓库放进 `/root/dsh-auto-think`；
-- profile 的 `dependencies` 加 `"dsh-auto-think": "link:/root/dsh-auto-think"`，`dsh.profile.bundles` 加 `dsh-auto-think`；
-- 建 `node_modules/dsh-auto-think` 链接，重启 Web。
+公开仓库，先用 `dsh` 的 plugin 命令装依赖：
+
+```bash
+dsh plugin --profile web add github:yezitotempeace/dsh-auto-think
+```
+
+然后把 `dsh-auto-think` 加进 profile `package.json` 的 `dsh.profile.bundles`，重启 Web。
+（`plugin add` 只装依赖，bundle 不会自动挂载。）
+
+本机开发也可以用 link：仓库放进 `/root/dsh-auto-think`，`dependencies` 写
+`"dsh-auto-think": "link:/root/dsh-auto-think"`，`dsh.profile.bundles` 加 `dsh-auto-think`，
+建 `node_modules/dsh-auto-think` 链接，重启 Web。
 
 ## 停用 / 卸载
 
