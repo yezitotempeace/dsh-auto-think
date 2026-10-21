@@ -288,12 +288,17 @@ window.__ModuleLoader__.load({
 			if (!isOpen(row)) return;
 			const content = contentOf(row);
 			if (content === null || prefersReducedMotion()) return;
+			// A hidden/zero-height body has nothing to animate; let React close it.
+			if (content.getBoundingClientRect().height === 0) return;
 			event.preventDefault();
 			event.stopPropagation();
 			event.stopImmediatePropagation?.();
 			animateCollapse(content, () => {
+				// React may have replaced the row while the body shrank; fall back to
+				// the original node when it is still in the document.
 				const fresh = block.querySelector(ROW_SELECTOR);
-				if (fresh !== null && isOpen(fresh)) clickRow(fresh);
+				const target = fresh !== null ? fresh : row.isConnected === true ? row : null;
+				if (target !== null && isOpen(target)) clickRow(target);
 			});
 		}
 
